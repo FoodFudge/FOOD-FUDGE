@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Food Fudge — Cafe & Kitchen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#2B1B14;
+    --cream:#FFF8EF;
+    --terracotta:#C75D3B;
+    --sage:#7A8C5C;
+    --tan:#E8D5B5;
+    --tan-soft:#F3E6CC;
+    --max-w:1180px;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  img{max-width:100%; display:block;}
+
+  a{color:inherit; text-decoration:none;}
+
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    line-height:1.1;
+  }
+
+  .wrap{
+    max-width:var(--max-w);
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  /* Focus visibility */
+  a:focus-visible, button:focus-visible{
+    outline:3px solid var(--terracotta);
+    outline-offset:3px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:rgba(255,248,239,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--tan);
+  }
+
+  .nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:18px 32px;
+    max-width:var(--max-w);
+    margin:0 auto;
+  }
+
+  .logo{
+    font-family:'Fraunces', serif;
+    font-size:1.5rem;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+
+  .logo span{color:var(--terracotta);}
+
+  .nav-links{
+    display:flex;
+    gap:36px;
+    list-style:none;
+    font-size:0.95rem;
+    font-weight:500;
+  }
+
+  .nav-links a{
+    position:relative;
+    padding:4px 0;
+    transition:color 0.2s ease;
+  }
+
+  .nav-links a:hover{color:var(--terracotta);}
+
+  .nav-links a.active{color:var(--terracotta);}
+
+  .nav-cta{
+    background:var(--ink);
+    color:var(--cream);
+    padding:11px 22px;
+    border-radius:99px;
+    font-size:0.9rem;
+    font-weight:600;
+    transition:background 0.2s ease, transform 0.2s ease;
+  }
+
+  .nav-cta:hover{background:var(--terracotta); transform:translateY(-1px);}
+
+  .nav-toggle{
+    display:none;
+    background:none;
+    border:none;
+    cursor:pointer;
+    padding:8px;
+  }
+
+  .nav-toggle span{
+    display:block;
+    width:24px;
+    height:2px;
+    background:var(--ink);
+    margin:5px 0;
+    transition:0.25s;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding:90px 0 70px;
+    position:relative;
+    overflow:hidden;
+  }
+
+  .hero .wrap{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:56px;
+    align-items:center;
+  }
+
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:var(--tan-soft);
+    color:var(--ink);
+    padding:7px 14px;
+    border-radius:99px;
+    font-size:0.82rem;
+    font-weight:600;
+    letter-spacing:0.02em;
+    margin-bottom:22px;
+  }
+
+  .eyebrow::before{
+    content:"";
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:var(--sage);
+  }
+
+  .hero h1{
+    font-size:clamp(2.4rem, 4.6vw, 3.8rem);
+    margin-bottom:22px;
+    letter-spacing:-0.01em;
+  }
+
+  .underline-accent{
+    position:relative;
+    white-space:nowrap;
+  }
+
+  .underline-accent svg{
+    position:absolute;
+    left:0;
+    bottom:-10px;
+    width:100%;
+    height:14px;
+  }
+
+  .hero p.lead{
+    font-size:1.13rem;
+    color:#5a473c;
+    max-width:46ch;
+    margin-bottom:32px;
+  }
+
+  .hero-ctas{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+
+  .btn-primary{
+    background:var(--terracotta);
+    color:var(--cream);
+    padding:15px 28px;
+    border-radius:99px;
+    font-weight:600;
+    font-size:0.97rem;
+    display:inline-block;
+    transition:background 0.2s ease, transform 0.2s ease;
+    border:1px solid var(--terracotta);
+  }
+
+  .btn-primary:hover{background:#a84a2d; transform:translateY(-2px);}
+
+  .btn-secondary{
+    background:transparent;
+    color:var(--ink);
+    padding:15px 28px;
+    border-radius:99px;
+    font-weight:600;
+    font-size:0.97rem;
+    border:1.5px solid var(--ink);
+    display:inline-block;
+    transition:background 0.2s ease, transform 0.2s ease;
+  }
+
+  .btn-secondary:hover{background:var(--ink); color:var(--cream); transform:translateY(-2px);}
+
+  .hero-art{
+    position:relative;
+    border-radius:24px;
+    overflow:hidden;
+    aspect-ratio:4/4.6;
+    background:#000;
+    display:flex;
+    align-items:flex-end;
+    padding:26px;
+  }
+
+  .hero-art img{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+  }
+
+  .hero-art::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(to top, rgba(43,27,20,0.55) 0%, rgba(43,27,20,0) 45%);
+    z-index:1;
+  }
+
+  .hero-art .card-tag{
+    position:relative;
+    z-index:2;
+  }
+
+  .hero-art .card-tag{
+    background:var(--cream);
+    color:var(--ink);
+    padding:16px 20px;
+    border-radius:16px;
+    font-size:0.9rem;
+    box-shadow:0 14px 30px rgba(43,27,20,0.18);
+  }
+
+  .hero-art .card-tag strong{
+    display:block;
+    font-family:'Fraunces', serif;
+    font-size:1.2rem;
+    font-weight:600;
+    margin-bottom:2px;
+  }
+
+  /* ---------- Today's specials strip ---------- */
+  .specials{
+    background:var(--ink);
+    color:var(--cream);
+    padding:22px 0;
+    overflow:hidden;
+  }
+
+  .specials-track{
+    display:flex;
+    gap:48px;
+    white-space:nowrap;
+    animation:scroll-left 28s linear infinite;
+    width:max-content;
+  }
+
+  @keyframes scroll-left{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+
+  .specials-track span{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:1.05rem;
+    opacity:0.92;
+  }
+
+  .specials-track span::after{
+    content:"✦";
+    margin-left:48px;
+    opacity:0.5;
+    font-style:normal;
+  }
+
+  /* ---------- Section shared ---------- */
+  section{padding:90px 0;}
+
+  .section-head{
+    max-width:560px;
+    margin:0 0 50px;
+  }
+
+  .section-head .eyebrow{margin-bottom:16px;}
+
+  .section-head h2{
+    font-size:clamp(1.8rem, 3vw, 2.5rem);
+  }
+
+  .section-head p{
+    color:#5a473c;
+    margin-top:14px;
+    font-size:1.04rem;
+  }
+
+  /* ---------- Menu preview ---------- */
+  .dish-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:28px;
+  }
+
+  .dish-card{
+    background:#fff;
+    border:1px solid var(--tan);
+    border-radius:18px;
+    padding:26px;
+    transition:transform 0.25s ease, box-shadow 0.25s ease;
+    opacity:0;
+    transform:translateY(18px);
+    animation:fade-up 0.6s ease forwards;
+  }
+
+  .dish-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 20px 36px rgba(43,27,20,0.1);
+  }
+
+  .dish-card .dish-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    margin-bottom:14px;
+  }
+
+  .dish-icon{
+    width:48px;
+    height:48px;
+    border-radius:14px;
+    background:var(--tan-soft);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:1.4rem;
+  }
+
+  .dish-price{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.1rem;
+    color:var(--terracotta);
+  }
+
+  .dish-card h3{
+    font-size:1.2rem;
+    margin-bottom:8px;
+  }
+
+  .dish-card p{
+    color:#5a473c;
+    font-size:0.95rem;
+  }
+
+  .dish-tag{
+    display:inline-block;
+    margin-top:14px;
+    font-size:0.78rem;
+    font-weight:600;
+    color:var(--sage);
+    background:#eef1e6;
+    padding:4px 10px;
+    border-radius:99px;
+  }
+
+  .menu-link-row{
+    margin-top:42px;
+    text-align:center;
+  }
+
+  /* ---------- Story split ---------- */
+  .story{
+    background:var(--tan-soft);
+  }
+
+  .story .wrap{
+    display:grid;
+    grid-template-columns:0.9fr 1.1fr;
+    gap:56px;
+    align-items:center;
+  }
+
+  .story-art{
+    border-radius:20px;
+    aspect-ratio:1/1;
+    overflow:hidden;
+    position:relative;
+  }
+
+  .story-art img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+  }
+
+  .story h2{
+    font-size:clamp(1.8rem, 3vw, 2.4rem);
+    margin-bottom:20px;
+  }
+
+  .story p{
+    color:#5a473c;
+    margin-bottom:16px;
+    max-width:54ch;
+  }
+
+  .story-stats{
+    display:flex;
+    gap:40px;
+    margin-top:32px;
+  }
+
+  .story-stats div strong{
+    font-family:'Fraunces', serif;
+    font-size:1.8rem;
+    display:block;
+    color:var(--terracotta);
+  }
+
+  .story-stats div span{
+    font-size:0.85rem;
+    color:#5a473c;
+  }
+
+  /* ---------- Hours & visit ---------- */
+  .visit .wrap{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:28px;
+  }
+
+  .visit-card{
+    background:#fff;
+    border:1px solid var(--tan);
+    border-radius:20px;
+    padding:36px;
+  }
+
+  .visit-card h3{
+    font-size:1.3rem;
+    margin-bottom:18px;
+  }
+
+  .hours-row{
+    display:flex;
+    justify-content:space-between;
+    padding:11px 0;
+    border-bottom:1px dashed var(--tan);
+    font-size:0.95rem;
+  }
+
+  .hours-row:last-child{border-bottom:none;}
+
+  .hours-row .day{font-weight:600;}
+
+  .hours-row .today{color:var(--terracotta);}
+
+  .visit-card address{
+    font-style:normal;
+    color:#5a473c;
+    margin-bottom:18px;
+    line-height:1.8;
+  }
+
+  /* ---------- Footer ---------- */
+  footer{
+    background:var(--ink);
+    color:var(--cream);
+    padding:60px 0 28px;
+  }
+
+  .footer-top{
+    display:grid;
+    grid-template-columns:1.3fr 1fr 1fr;
+    gap:40px;
+    padding-bottom:40px;
+    border-bottom:1px solid rgba(255,248,239,0.14);
+  }
+
+  .footer-top .logo{color:var(--cream); margin-bottom:14px;}
+
+  .footer-top p{
+    color:#cbb9a8;
+    font-size:0.92rem;
+    max-width:32ch;
+  }
+
+  .footer-col h4{
+    font-size:0.85rem;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    margin-bottom:16px;
+    color:#cbb9a8;
+  }
+
+  .footer-col ul{list-style:none;}
+
+  .footer-col li{margin-bottom:10px;}
+
+  .footer-col a{
+    color:var(--cream);
+    font-size:0.95rem;
+    opacity:0.9;
+    transition:opacity 0.2s ease;
+  }
+
+  .footer-col a:hover{opacity:1; color:var(--terracotta);}
+
+  .footer-bottom{
+    padding-top:26px;
+    display:flex;
+    justify-content:space-between;
+    font-size:0.85rem;
+    color:#9a8674;
+  }
+
+  @keyframes fade-up{
+    to{opacity:1; transform:translateY(0);}
+  }
+
+  .reveal{
+    opacity:0;
+    transform:translateY(20px);
+    transition:opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.in-view{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:900px){
+    .hero .wrap{grid-template-columns:1fr;}
+    .hero-art{order:-1; aspect-ratio:16/10;}
+    .dish-grid{grid-template-columns:1fr 1fr;}
+    .story .wrap{grid-template-columns:1fr;}
+    .story-art{aspect-ratio:16/9;}
+    .visit .wrap{grid-template-columns:1fr;}
+    .footer-top{grid-template-columns:1fr; gap:28px;}
+  }
+
+  @media (max-width:640px){
+    .nav-links{
+      position:fixed;
+      top:64px;
+      left:0;
+      right:0;
+      background:var(--cream);
+      flex-direction:column;
+      gap:0;
+      padding:10px 24px 20px;
+      border-bottom:1px solid var(--tan);
+      transform:translateY(-130%);
+      transition:transform 0.25s ease;
+    }
+    .nav-links.open{transform:translateY(0);}
+    .nav-links li{width:100%; padding:12px 0; border-bottom:1px solid var(--tan-soft);}
+    .nav-toggle{display:block;}
+    .nav-cta{display:none;}
+    .dish-grid{grid-template-columns:1fr;}
+    section{padding:60px 0;}
+    .footer-bottom{flex-direction:column; gap:8px;}
+    .hero{padding:40px 0 50px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <a href="index.html" class="logo">Food <span>Fudge</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a href="contact.html#reserve" class="nav-cta">Reserve a table</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <div class="eyebrow">Open daily from 8am</div>
+        <h1>Slow mornings, <span class="underline-accent">honest food<svg viewBox="0 0 220 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 10C40 2 80 2 110 7C140 12 180 4 218 8" stroke="#C75D3B" stroke-width="4" stroke-linecap="round"/></svg></span> and a seat that's yours.</h1>
+        <p class="lead">Food Fudge is the neighborhood kitchen where the coffee's strong, the bread's baked before sunrise, and nobody rushes you out the door.</p>
+        <div class="hero-ctas">
+          <a href="menu.html" class="btn-primary">See the menu</a>
+          <a href="contact.html#reserve" class="btn-secondary">Reserve a table</a>
+        </div>
+      </div>
+      <div class="hero-art">
+        <img src="https://images.unsplash.com/photo-1726950189914-8fe1016eb9c7?fm=jpg&amp;q=80&amp;w=1200&amp;auto=format&amp;fit=crop" alt="Display case filled with fresh pastries and baked goods" loading="lazy">
+        <div class="card-tag">
+          <strong>Today's bake</strong>
+          Brown butter fudge brownies — out at 9am
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="specials">
+    <div class="specials-track">
+      <span>Wood-fired sourdough</span>
+      <span>Slow-braised short rib</span>
+      <span>House fudge brownies</span>
+      <span>Single-origin pour over</span>
+      <span>Weekend brunch from 9</span>
+      <span>Wood-fired sourdough</span>
+      <span>Slow-braised short rib</span>
+      <span>House fudge brownies</span>
+      <span>Single-origin pour over</span>
+      <span>Weekend brunch from 9</span>
+    </div>
+  </div>
+
+  <section class="menu-preview">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">From the kitchen</div>
+        <h2>A few things worth coming back for</h2>
+        <p>Small, seasonal menu — everything made in-house, nothing frozen and reheated.</p>
+      </div>
+      <div class="dish-grid">
+        <div class="dish-card" style="animation-delay:0.05s">
+          <div class="dish-top">
+            <div class="dish-icon">🍞</div>
+            <div class="dish-price">$9</div>
+          </div>
+          <h3>Sourdough toast</h3>
+          <p>Whipped ricotta, charred honey, flaky salt, our own daily loaf.</p>
+          <span class="dish-tag">Vegetarian</span>
+        </div>
+        <div class="dish-card" style="animation-delay:0.15s">
+          <div class="dish-top">
+            <div class="dish-icon">🍲</div>
+            <div class="dish-price">$19</div>
+          </div>
+          <h3>Short rib braise</h3>
+          <p>Eight-hour braise, root vegetables, soft polenta, red wine jus.</p>
+          <span class="dish-tag">Signature</span>
+        </div>
+        <div class="dish-card" style="animation-delay:0.25s">
+          <div class="dish-top">
+            <div class="dish-icon">🍫</div>
+            <div class="dish-price">$7</div>
+          </div>
+          <h3>Fudge brownie</h3>
+          <p>The one we're named for. Dense, brown-butter, sea salt on top.</p>
+          <span class="dish-tag">House favorite</span>
+        </div>
+      </div>
+      <div class="menu-link-row">
+        <a href="menu.html" class="btn-secondary">View full menu</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="story">
+    <div class="wrap">
+      <div class="story-art"><img src="https://images.unsplash.com/photo-1775059956734-78ffd2075cec?fm=jpg&amp;q=80&amp;w=1000&amp;auto=format&amp;fit=crop" alt="Cozy cafe interior with tables and chairs near a window" loading="lazy"></div>
+      <div>
+        <div class="eyebrow">Our story</div>
+        <h2>Started in a kitchen too small for what we wanted to do</h2>
+        <p>Food Fudge opened as a six-table cafe because we couldn't find a place nearby that treated breakfast and dinner with the same care. So we built one — sourcing from growers we know, baking before the sun's up, and keeping the menu small enough that everything on it is good.</p>
+        <p>Years on, the tables are still close enough to hear your neighbor's conversation. We like it that way.</p>
+        <div class="story-stats">
+          <div><strong>2014</strong><span>Year we opened</span></div>
+          <div><strong>6</strong><span>Local growers we use</span></div>
+          <div><strong>40</strong><span>Seats in the house</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="visit">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Visit us</div>
+        <h2>Find us, know our hours</h2>
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:28px;">
+        <div class="visit-card">
+          <h3>Hours</h3>
+          <div class="hours-row"><span class="day today">Today · Sat</span><span>8am – 10pm</span></div>
+          <div class="hours-row"><span class="day">Sunday</span><span>8am – 4pm</span></div>
+          <div class="hours-row"><span class="day">Mon – Thu</span><span>7am – 9pm</span></div>
+          <div class="hours-row"><span class="day">Friday</span><span>7am – 10pm</span></div>
+        </div>
+        <div class="visit-card">
+          <h3>Location</h3>
+          <address>
+            14 Mill Lane<br>
+            Rawalpindi, Punjab<br>
+            Pakistan
+          </address>
+          <a href="contact.html" class="btn-secondary">Get directions</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <a href="index.html" class="logo">Food <span style="color:var(--terracotta)">Fudge</span></a>
+        <p>A neighborhood kitchen for slow mornings and honest food. Open daily.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+925112345678">051 1234 5678</a></li>
+          <li><a href="mailto:hello@foodfudge.example">hello@foodfudge.example</a></li>
+          <li><a href="contact.html">14 Mill Lane, Rawalpindi</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Food Fudge. All rights reserved.</span>
+      <span>Made with care, one loaf at a time.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', isOpen);
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.story, .visit-card');
+  revealEls.forEach(el => el.classList.add('reveal'));
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('in-view');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0.15});
+  revealEls.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
