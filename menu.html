@@ -1,1328 +1,225 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FOOD FUDGE — Menu</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Food Fudge — Menu</title>
 
-  <style>
-    :root{
-      --ink:#2B1B14;
-      --cream:#FFF8EF;
-      --terracotta:#C75D3B;
-      --sage:#7A8C5C;
-      --tan:#E8D5B5;
-      --tan-soft:#F3E6CC;
-      --max-w:1180px;
-    }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+<style>
+  :root{
+    --ink:#2B1B14;
+    --cream:#FFF8EF;
+    --terracotta:#C75D3B;
+    --sage:#7A8C5C;
+    --tan:#E8D5B5;
+    --tan-soft:#F3E6CC;
+    --max-w:1180px;
+  }
+
+  *{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+  }
+
+  html{
+    scroll-behavior:smooth;
+  }
+
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  img{
+    max-width:100%;
+    display:block;
+  }
+
+  a{
+    color:inherit;
+    text-decoration:none;
+  }
+
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    line-height:1.1;
+  }
+
+  .wrap{
+    max-width:var(--max-w);
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  a:focus-visible,
+  button:focus-visible{
+    outline:3px solid var(--terracotta);
+    outline-offset:3px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
     *{
-      box-sizing:border-box;
-      margin:0;
-      padding:0;
+      animation:none !important;
+      transition:none !important;
     }
-
-    html{
-      scroll-behavior:smooth;
-    }
-
-    body{
-      font-family:Arial, Helvetica, sans-serif;
-      background:var(--cream);
-      color:var(--ink);
-      line-height:1.6;
-    }
-
-    a{
-      color:inherit;
-      text-decoration:none;
-    }
-
-    img{
-      width:100%;
-      display:block;
-      object-fit:cover;
-    }
-
-    .container{
-      width:min(92%, var(--max-w));
-      margin:auto;
-    }
-
-    /* HEADER */
-    header{
-      background:var(--cream);
-      border-bottom:1px solid var(--tan);
-      position:sticky;
-      top:0;
-      z-index:1000;
-    }
-
-    .nav{
-      min-height:75px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:30px;
-    }
-
-    .logo{
-      font-size:25px;
-      font-weight:900;
-      letter-spacing:1px;
-    }
-
-    .nav-links{
-      display:flex;
-      align-items:center;
-      gap:25px;
-      list-style:none;
-    }
-
-    .nav-links a{
-      font-weight:600;
-      font-size:15px;
-    }
-
-    .nav-links a:hover{
-      color:var(--terracotta);
-    }
-
-    .nav-cta{
-      background:var(--terracotta);
-      color:white;
-      padding:11px 18px;
-      border-radius:6px;
-    }
-
-    .menu-toggle{
-      display:none;
-      font-size:26px;
-      cursor:pointer;
-    }
-
-    /* HERO */
-    .hero{
-      padding:75px 0 55px;
-    }
-
-    .hero-grid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:50px;
-      align-items:center;
-    }
-
-    .eyebrow{
-      color:var(--terracotta);
-      font-size:14px;
-      font-weight:800;
-      text-transform:uppercase;
-      letter-spacing:2px;
-      margin-bottom:15px;
-    }
-
-    .hero h1{
-      font-size:clamp(42px,6vw,72px);
-      line-height:1;
-      margin-bottom:25px;
-    }
-
-    .hero p{
-      font-size:18px;
-      max-width:600px;
-      color:#66554c;
-    }
-
-    .hero-image{
-      height:450px;
-      border-radius:14px;
-      overflow:hidden;
-    }
-
-    .hero-image img{
-      height:100%;
-    }
-
-    /* CATEGORY NAV */
-    .category-nav{
-      background:var(--tan-soft);
-      padding:18px 0;
-      position:sticky;
-      top:75px;
-      z-index:900;
-    }
-
-    .category-links{
-      display:flex;
-      justify-content:center;
-      gap:35px;
-      list-style:none;
-      flex-wrap:wrap;
-    }
-
-    .category-links a{
-      font-weight:700;
-      font-size:14px;
-    }
-
-    .category-links a:hover{
-      color:var(--terracotta);
-    }
-
-    /* MENU */
-    .menu-section{
-      padding:75px 0 20px;
-      scroll-margin-top:140px;
-    }
-
-    .section-heading{
-      display:flex;
-      align-items:end;
-      justify-content:space-between;
-      border-bottom:2px solid var(--ink);
-      padding-bottom:12px;
-      margin-bottom:15px;
-    }
-
-    .section-heading h2{
-      font-size:36px;
-    }
-
-    .section-heading p{
-      color:#78665b;
-      font-size:14px;
-    }
-
-    .dish{
-      display:grid;
-      grid-template-columns:1fr auto;
-      gap:20px;
-      padding:25px 0;
-      border-bottom:1px solid var(--tan);
-    }
-
-    .dish-name{
-      font-size:21px;
-      font-weight:800;
-      margin-bottom:5px;
-    }
-
-    .dish-description{
-      color:#78665b;
-      max-width:750px;
-    }
-
-    .dish-price{
-      font-size:20px;
-      font-weight:900;
-      color:var(--terracotta);
-      white-space:nowrap;
-    }
-
-    /* NOTE */
-    .note{
-      margin:70px 0;
-      background:var(--tan-soft);
-      padding:35px;
-      border-left:6px solid var(--sage);
-      border-radius:8px;
-    }
-
-    .note h3{
-      font-size:24px;
-      margin-bottom:8px;
-    }
-
-    .note p{
-      color:#66554c;
-    }
-
-    /* CTA */
-    .cta{
-      background:var(--ink);
-      color:white;
-      padding:70px 0;
-      text-align:center;
-      margin-top:50px;
-    }
-
-    .cta h2{
-      font-size:42px;
-      margin-bottom:15px;
-    }
-
-    .cta p{
-      color:#d9c9bd;
-      margin-bottom:25px;
-    }
-
-    .cta-buttons{
-      display:flex;
-      justify-content:center;
-      gap:15px;
-      flex-wrap:wrap;
-    }
-
-    .btn{
-      display:inline-block;
-      padding:13px 23px;
-      border-radius:6px;
-      font-weight:800;
-    }
-
-    .btn-primary{
-      background:var(--terracotta);
-      color:white;
-    }
-
-    .btn-secondary{
-      border:1px solid #ffffff55;
-      color:white;
-    }
-
-    /* FOOTER */
-    footer{
-      background:#1D120E;
-      color:white;
-      padding:50px 0 25px;
-    }
-
-    .footer-grid{
-      display:grid;
-      grid-template-columns:2fr 1fr 1fr;
-      gap:40px;
-      padding-bottom:35px;
-    }
-
-    .footer-brand h3{
-      font-size:25px;
-      margin-bottom:10px;
-    }
-
-    .footer-brand p{
-      color:#cbbdb5;
-      max-width:400px;
-    }
-
-    .footer-col h4{
-      margin-bottom:12px;
-    }
-
-    .footer-col p{
-      color:#cbbdb5;
-      margin-bottom:5px;
-    }
-
-    .copyright{
-      border-top:1px solid #ffffff22;
-      padding-top:20px;
-      color:#a99991;
-      font-size:14px;
-      text-align:center;
-    }
-
-    /* RESPONSIVE */
-    @media(max-width:800px){
-
-      .nav-links{
-        position:absolute;
-        top:75px;
-        left:0;
-        width:100%;
-        background:var(--cream);
-        flex-direction:column;
-        padding:25px;
-        display:none;
-        border-bottom:1px solid var(--tan);
-      }
-
-      .nav-links.active{
-        display:flex;
-      }
-
-      .menu-toggle{
-        display:block;
-      }
-
-      .nav-cta{
-        display:none;
-      }
-
-      .hero-grid{
-        grid-template-columns:1fr;
-      }
-
-      .hero{
-        padding:50px 0;
-      }
-
-      .hero-image{
-        height:320px;
-      }
-
-      .category-nav{
-        top:75px;
-      }
-
-      .category-links{
-        gap:15px 25px;
-      }
-
-      .footer-grid{
-        grid-template-columns:1fr;
-      }
-    }
-
-    @media(max-width:500px){
-
-      .hero h1{
-        font-size:45px;
-      }
-
-      .section-heading{
-        display:block;
-      }
-
-      .section-heading h2{
-        font-size:30px;
-      }
-
-      .dish{
-        grid-template-columns:1fr;
-        gap:8px;
-      }
-
-      .dish-price{
-        font-size:18px;
-      }
-
-      .note{
-        padding:25px;
-      }
-
-      .cta h2{
-        font-size:32px;
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-  <!-- HEADER -->
-  <header>
-    <div class="container nav">
-
-      <a href="index.html" class="logo">FOOD FUDGE</a>
-
-      <div class="menu-toggle" id="menuToggle">
-        ☰
-      </div>
-
-      <ul class="nav-links" id="navLinks">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="menu.html">Menu</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="reservation.html" class="nav-cta">Reserve a table</a></li>
-      </ul>
-
-    </div>
-  </header>
-
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="container hero-grid">
-
-      <div>
-        <div class="eyebrow">Updated for the season</div>
-
-        <h1>Everything we make, in one place</h1>
-
-        <p>
-          From slow breakfasts and hearty mains to handmade sweets and
-          freshly brewed drinks, discover everything available at FOOD FUDGE.
-        </p>
-      </div>
-
-      <div class="hero-image">
-        <img
-          src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1200&q=80"
-          alt="FOOD FUDGE restaurant"
-        >
-      </div>
-
-    </div>
-  </section>
-
-
-  <!-- CATEGORY NAV -->
-  <nav class="category-nav">
-    <div class="container">
-
-      <ul class="category-links">
-        <li><a href="#breakfast">Breakfast</a></li>
-        <li><a href="#mains">Mains</a></li>
-        <li><a href="#sides">Sides & Salads</a></li>
-        <li><a href="#drinks">Drinks</a></li>
-        <li><a href="#sweets">Sweets</a></li>
-      </ul>
-
-    </div>
-  </nav>
-
-
-  <main class="container">
-
-    <!-- BREAKFAST -->
-    <section class="menu-section" id="breakfast">
-
-      <div class="section-heading">
-        <h2>Breakfast</h2>
-        <p>Served all day</p>
-      </div>
-
-      <div class="dish">
-        <div>
-          <div class="dish-name">Sourdough toast</div>
-          <div class="dish-description">
-            Whipped ricotta, charred honey, flaky salt, our own daily loaf.
-          </div>
-        </div>
-        <span class="dish-price">PKR 550</span>
-      </div>
-
-      <div class="dish">
-        <div>
-          <div class="dish-name">Shakshuka</div>
-          <div class="dish-description">
-            Two eggs poached in spiced tomato, feta, grilled flatbread.
-          </div>
-        </div>
-        <span class="dish-price">PKR 750</span>
-      </div>
-
-      <div class="dish">
-        <div>
-          <div class="dish-name">Buttermilk pancakes</div>
-          <div class="dish-description">
-            Stack of three, brown butter maple, seasonal fruit.
-          </div>
-        </div>
-        <span class="dish-price">PKR 650</span>
-      </div>
-
-      <div class="dish">
-        <div>
-          <div class="dish-name">Breakfast hash</div>
-          <div class="dish-description">
-            Crispy potatoes, smoked bacon, fried egg, herb oil.
-          </div>
-        </div>
-        <span class="dish-price">PKR 850</span>
-      </div>
-
-      <div class="dish">
-        <div>
-          <div class="dish-name">Granola bowl</div>
-          <div class="dish-description">
-            House granola, yoghurt, stewed fruit, toasted seeds.
-          </div>
-        </div>
-        <span class="dish-price">PKR 500</span>
-      </div>
-
-      <div class="dish">
-        <div>
-          <div class="dish-name">Avocado toast</div>
-          <div class="dish-description">
-            Sourdough, smashed avocado, chili oil, lime, radish.
-          </div>
-        </div>
-        <span class="dish-price">PKR 600</span>
-      </div>
-
-    </section>
-
-
-    <!-- MAINS -->
-    <section class="menu-section" id="mains">
-
-      <div class="section-heading">
-        <h2>Mains</h2>
-        <p>Made fresh to order</p>
-      </div>
-
-      <div class="dish">
-        <div>
-          <div class="dish-name">Short rib braise</div>
-          <div class="dish-description">
-            Eight-hour braise, root vegetables, soft polenta, red wine jus.
-          </div>
-        </div>
-        <span class="dish-price">PKR 1,450</span>
-      </div>
-
-      <div class="dish">
-        <div>
-          <div class="dish-name">Wood-fired chicken</div>
-          <div class="dish-description">
-            Half chicken, charred lemon, salsa verde, roast potatoes.
-          </div>
-        </div>
-        <span class="dish-price">PKR 1,250</span>
-      </div>
-
-      <div class="dish">
-        <div>
-          <div class="dish-name">Squash & sage risotto</div>
-          <div class="dish-description">
-            Roast squash, crispy sage, aged parmesan, toasted pepitas.
-          </div>
-        </div>
-        <span class="dish-price">PKR 1,100</span>
-      </div>
-
-      <div class="dish">
-        <div>
-          <div class="dish-name">Spiced lamb flatbread</div>
-          <div class="dish-description">
-            Slow-spiced lamb, pickled onion, mint yoghurt, sumac.
-          </div>
-        </div>
-        <span class="dish-price">PKR 950</span>
-      </div>
-
-      <div class="dish">
-        <div>
-          <div class="dish-name">Pan-seared trout</div>
-          <div class="dish-description">
-            Brown butter, capers, charred greens, lemon.
-          </div>
-        </div>
-        <span class="dish-price">PKR 1,300</span>
-      </div>
-
-      <div class="dish">
-        <div>
-          <div class="dish-name">Fudge burger</div>
-          <div class="dish-description">
-            House-ground beef, smoked cheddar, burnt onion jam, fries.
-          </div>
-        </div>
-        <span class="dish-price">PKR 850</span>
-      </div>
-
-    </section>
-
-
-    <!-- SIDES & SALADS -->
-    <section class="menu-section" id="sides">
-
-      <div class="section-heading">
-        <h2>Sides & Salads</h2>
-        <p>Perfect additions</p>
-      </div>
-
-      <div class="dish">
-        <div>
-          <div class="dish-name">Charred greens</div>
-          <div class="dish-description">
-            Seasonal greens, garlic, chili, lemon.
-          </div>
-        </div>
-        <span class="dish-price">PKR 450</span>
-      </div>
-
-      <div class="dish">
-        <div>
-          <div class="dish-name">Roast potatoes</div>
-          <div class="dish-description">
-            Crisp edges, rosemary salt, aioli.
-          </div>
-        </div>
-        <span class="dish-price">PKR 400</span>
-      </div>
-
-      <div class="dish">
-        <div>
-          <div class="dish-name">Heirloom tomato salad</div>
-          <div class="dish-description">
-            Stracciatella, basil oil, aged balsamic.
-          </div>
-        </div>
-        <span class="dish-price">PKR 550</span>
-      </div>
-
-      <div class="dish">
-        <div>
-          <div class="dish-name">Grain & herb salad</div>
-          <div class="dish-description">
-            Farro, pomegranate, mint, toasted almond.
-          </div>
-        </div>
-        <span class="dish-price">PKR 500</span>
-      </div>
-
-    </section>
-
-
-    <!-- DRINKS -->
-    <section class="menu-section" id="drinks">
-
-      <div class="section-heading">
-        <h2>Drinks</h2>
-        <p>Hot & cold</p>
-      </div>
-
-      <div class="dish">
-        <div>
-          <div class="dish-name">Single-origin pour over</div>
-          <div class="dish-description">
-            Rotating beans, brewed fresh to order.
-          </div>
-        </div>
-        <span class="dish-price">PKR 450</span>
-      </div>
-
-      <div class="dish">
-        <div>
-          <div class="dish-name">Flat white</div>
-          <div class="dish-description">
-            Double shot, steamed milk, latte art included.
-          </div>
-        </div>
-        <span class="dish-price">PKR 400</span>
-      </div>
-
-      <div class="dish">
-        <div>
-          <div class="dish-name">Masala chai</div>
-          <div class="dish-description">
-            House-spiced, brewed slow with whole milk.
-          </div>
-        </div>
-        <span class="dish-price">PKR 300</span>
-      </div>
-
-      <div class="dish">
-        <div>
-          <div class="dish-name">Fresh fruit cooler</div>
-          <div class="dish-description">
-            Seasonal fruit, mint, soda water.
-          </div>
-        </div>
-        <span class="dish-price">PKR 350</span>
-      </div>
-
-    </section>
-
-
-    <!-- SWEETS -->
-    <section class="menu-section" id="sweets">
-
-      <div class="section-heading">
-        <h2>Sweets</h2>
-        <p>Made in-house</p>
-      </div>
-
-      <div class="dish">
-        <div>
-          <div class="dish-name">Fudge brownie</div>
-          <div class="dish-description">
-            Dense, brown-butter, sea salt on top.
-          </div>
-        </div>
-        <span class="dish-price">PKR 450</span>
-      </div>
-
-      <div class="dish">
-        <div>
-          <div class="dish-name">Salted caramel fudge slice</div>
-          <div class="dish-description">
-            Layered shortbread, caramel, dark chocolate ganache.
-          </div>
-        </div>
-        <span class="dish-price">PKR 500</span>
-      </div>
-
-      <div class="dish">
-        <div>
-          <div class="dish-name">Affogato</div>
-          <div class="dish-description">
-            House-made vanilla gelato, double espresso poured tableside.
-          </div>
-        </div>
-        <span class="dish-price">PKR 400</span>
-      </div>
-
-      <div class="dish">
-        <div>
-          <div class="dish-name">Seasonal fruit crumble</div>
-          <div class="dish-description">
-            Warm, oat crumble, vanilla custard.
-          </div>
-        </div>
-        <span class="dish-price">PKR 450</span>
-      </div>
-
-    </section>
-
-
-    <!-- NOTE -->
-    <div class="note">
-
-      <h3>Allergies or dietary needs?</h3>
-
-      <p>
-        Please let our team know about any allergies or dietary requirements
-        when ordering. We are happy to explain ingredients and available options.
-      </p>
-
-    </div>
-
-  </main>
-
-
-  <!-- CTA -->
-  <section class="cta">
-
-    <div class="container">
-
-      <h2>Hungry already?</h2>
-
-      <p>
-        Reserve your table and enjoy something delicious at FOOD FUDGE.
-      </p>
-
-      <div class="cta-buttons">
-
-        <a href="reservation.html" class="btn btn-primary">
-          Reserve a table
-        </a>
-
-        <a href="about.html" class="btn btn-secondary">
-          Our story
-        </a>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- FOOTER -->
-  <footer>
-
-    <div class="container">
-
-      <div class="footer-grid">
-
-        <div class="footer-brand">
-
-          <h3>FOOD FUDGE</h3>
-
-          <p>
-            A neighborhood kitchen serving comforting food,
-            freshly baked treats, and good coffee.
-          </p>
-
-        </div>
-
-
-        <div class="footer-col">
-
-          <h4>Contact</h4>
-
-          <p>051 1234 5678</p>
-          <p>hello@foodfudge.example</p>
-
-        </div>
-
-
-        <div class="footer-col">
-
-          <h4>Visit Us</h4>
-
-          <p>14 Mill Lane</p>
-          <p>Rawalpindi, Pakistan</p>
-
-        </div>
-
-      </div>
-
-
-      <div class="copyright">
-        © 2026 FOOD FUDGE. All rights reserved.
-      </div>
-
-    </div>
-
-  </footer>
-
-
-  <script>
-
-    /* MOBILE MENU */
-
-    const menuToggle = document.getElementById("menuToggle");
-    const navLinks = document.getElementById("navLinks");
-
-    menuToggle.addEventListener("click", function(){
-
-      navLinks.classList.toggle("active");
-
-    });
-
-
-    /* CLOSE MOBILE MENU AFTER CLICK */
-
-    document.querySelectorAll(".nav-links a").forEach(function(link){
-
-      link.addEventListener("click", function(){
-
-        navLinks.classList.remove("active");
-
-      });
-
-    });
-
-
-    /* CATEGORY SMOOTH SCROLL */
-
-    document.querySelectorAll(".category-links a").forEach(function(link){
-
-      link.addEventListener("click", function(e){
-
-        e.preventDefault();
-
-        const target = document.querySelector(
-          this.getAttribute("href")
-        );
-
-        if(target){
-
-          target.scrollIntoView({
-            behavior:"smooth"
-          });
-
-        }
-
-      });
-
-    });
-
-
-    /* ACTIVE SECTION OBSERVER */
-
-    const sections = document.querySelectorAll(".menu-section");
-    const categoryLinks = document.querySelectorAll(".category-links a");
-
-    const observer = new IntersectionObserver(
-
-      function(entries){
-
-        entries.forEach(function(entry){
-
-          if(entry.isIntersecting){
-
-            categoryLinks.forEach(function(link){
-
-              link.classList.remove("active");
-
-            });
-
-            const activeLink = document.querySelector(
-              '.category-links a[href="#' + entry.target.id + '"]'
-            );
-
-            if(activeLink){
-
-              activeLink.classList.add("active");
-
-            }
-
-          }
-
-        });
-
-      },
-
-      {
-        rootMargin:"-30% 0px -60% 0px"
-      }
-
-    );
-
-    sections.forEach(function(section){
-
-      observer.observe(section);
-
-    });
-
-  </script>
-
-</body>
-</html></style>
-</head>
-<body>
-
-<header>
-  <nav class="nav">
-    <a href="index.html" class="logo">Food <span>Fudge</span></a>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="menu.html" class="active">Menu</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-    <a href="contact.html#reserve" class="nav-cta">Reserve a table</a>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-  </nav>
-</header>
-
-<main>
-  <section class="page-hero">
-    <div class="wrap">
-      <div>
-        <div class="eyebrow">Updated for the season</div>
-        <h1>Everything we make, in one place</h1>
-        <p>Small menu, made fresh daily. Vegetarian and spice notes are marked — ask your server about other allergies, we're happy to adjust.</p>
-      </div>
-      <div class="hero-photo">
-        <img src="https://images.unsplash.com/photo-1768174970617-90ccc8f57462?fm=jpg&amp;q=80&amp;w=900&amp;auto=format&amp;fit=crop" alt="Bakery storefront with fresh bread on display" loading="lazy">
-      </div>
-    </div>
-  </section>
-
-  <nav class="category-nav" aria-label="Menu categories">
-    <div class="wrap">
-      <button class="cat-btn active" data-target="breakfast">Breakfast</button>
-      <button class="cat-btn" data-target="mains">Mains</button>
-      <button class="cat-btn" data-target="sides">Sides & Salads</button>
-      <button class="cat-btn" data-target="drinks">Drinks</button>
-      <button class="cat-btn" data-target="sweets">Sweets</button>
-    </div>
-  </nav>
-
-  <section class="menu-section" id="breakfast">
-    <div class="wrap">
-      <div class="menu-section-head">
-        <h2>Breakfast</h2>
-        <span class="count">Served until 11:30am</span>
-      </div>
-      <div class="dish-list">
-        <div class="dish-row">
-          <div class="dish-row-info">
-            <h3>Sourdough toast <span class="badge badge-veg">Veg</span></h3>
-            <p>Whipped ricotta, charred honey, flaky salt, our own daily loaf.</p>
-          </div>
-          <span class="dish-price">$9</span>
-        </div>
-        <div class="dish-row">
-          <div class="dish-row-info">
-            <h3>Shakshuka <span class="badge badge-spice">Spiced</span></h3>
-            <p>Two eggs poached in spiced tomato, feta, grilled flatbread.</p>
-          </div>
-          <span class="dish-price">$13</span>
-        </div>
-        <div class="dish-row">
-          <div class="dish-row-info">
-            <h3>Buttermilk pancakes <span class="badge badge-veg">Veg</span></h3>
-            <p>Stack of three, brown butter maple, seasonal fruit.</p>
-          </div>
-          <span class="dish-price">$11</span>
-        </div>
-        <div class="dish-row">
-          <div class="dish-row-info">
-            <h3>Breakfast hash</h3>
-            <p>Crispy potatoes, smoked bacon, fried egg, herb oil.</p>
-          </div>
-          <span class="dish-price">$14</span>
-        </div>
-        <div class="dish-row">
-          <div class="dish-row-info">
-            <h3>Granola bowl <span class="badge badge-veg">Veg</span></h3>
-            <p>House granola, yoghurt, stewed fruit, toasted seeds.</p>
-          </div>
-          <span class="dish-price">$8</span>
-        </div>
-        <div class="dish-row">
-          <div class="dish-row-info">
-            <h3>Avocado toast <span class="badge badge-veg">Veg</span></h3>
-            <p>Sourdough, smashed avocado, chili oil, lime, radish.</p>
-          </div>
-          <span class="dish-price">$10</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="menu-section" id="mains">
-    <div class="wrap">
-      <div class="menu-section-head">
-        <h2>Mains</h2>
-        <span class="count">From 11:30am</span>
-      </div>
-      <div class="dish-list">
-        <div class="dish-row">
-          <div class="dish-row-info">
-            <h3>Short rib braise <span class="badge badge-best">Signature</span></h3>
-            <p>Eight-hour braise, root vegetables, soft polenta, red wine jus.</p>
-          </div>
-          <span class="dish-price">$19</span>
-        </div>
-        <div class="dish-row">
-          <div class="dish-row-info">
-            <h3>Wood-fired chicken</h3>
-            <p>Half chicken, charred lemon, salsa verde, roast potatoes.</p>
-          </div>
-          <span class="dish-price">$17</span>
-        </div>
-        <div class="dish-row">
-          <div class="dish-row-info">
-            <h3>Squash & sage risotto <span class="badge badge-veg">Veg</span></h3>
-            <p>Roast squash, crispy sage, aged parmesan, toasted pepitas.</p>
-          </div>
-          <span class="dish-price">$16</span>
-        </div>
-        <div class="dish-row">
-          <div class="dish-row-info">
-            <h3>Spiced lamb flatbread <span class="badge badge-spice">Spiced</span></h3>
-            <p>Slow-spiced lamb, pickled onion, mint yoghurt, sumac.</p>
-          </div>
-          <span class="dish-price">$15</span>
-        </div>
-        <div class="dish-row">
-          <div class="dish-row-info">
-            <h3>Pan-seared trout</h3>
-            <p>Brown butter, capers, charred greens, lemon.</p>
-          </div>
-          <span class="dish-price">$18</span>
-        </div>
-        <div class="dish-row">
-          <div class="dish-row-info">
-            <h3>Fudge burger</h3>
-            <p>House-ground beef, smoked cheddar, burnt onion jam, fries.</p>
-          </div>
-          <span class="dish-price">$15</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="menu-section" id="sides">
-    <div class="wrap">
-      <div class="menu-section-head">
-        <h2>Sides & Salads</h2>
-        <span class="count">Good for sharing</span>
-      </div>
-      <div class="dish-list">
-        <div class="dish-row">
-          <div class="dish-row-info">
-            <h3>Charred greens <span class="badge badge-veg">Veg</span></h3>
-            <p>Seasonal greens, garlic, chili, lemon.</p>
-          </div>
-          <span class="dish-price">$7</span>
-        </div>
-        <div class="dish-row">
-          <div class="dish-row-info">
-            <h3>Roast potatoes <span class="badge badge-veg">Veg</span></h3>
-            <p>Crisp edges, rosemary salt, aioli.</p>
-          </div>
-          <span class="dish-price">$6</span>
-        </div>
-        <div class="dish-row">
-          <div class="dish-row-info">
-            <h3>Heirloom tomato salad <span class="badge badge-veg">Veg</span></h3>
-            <p>Stracciatella, basil oil, aged balsamic.</p>
-          </div>
-          <span class="dish-price">$9</span>
-        </div>
-        <div class="dish-row">
-          <div class="dish-row-info">
-            <h3>Grain & herb salad <span class="badge badge-veg">Veg</span></h3>
-            <p>Farro, pomegranate, mint, toasted almond.</p>
-          </div>
-          <span class="dish-price">$8</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="menu-section" id="drinks">
-    <div class="wrap">
-      <div class="menu-section-head">
-        <h2>Drinks</h2>
-        <span class="count">All day</span>
-      </div>
-      <div class="dish-list">
-        <div class="dish-row">
-          <div class="dish-row-info">
-            <h3>Single-origin pour over</h3>
-            <p>Rotating beans, brewed fresh to order.</p>
-          </div>
-          <span class="dish-price">$5</span>
-        </div>
-        <div class="dish-row">
-          <div class="dish-row-info">
-            <h3>Flat white</h3>
-            <p>Double shot, steamed milk, latte art included.</p>
-          </div>
-          <span class="dish-price">$4.5</span>
-        </div>
-        <div class="dish-row">
-          <div class="dish-row-info">
-            <h3>Masala chai</h3>
-            <p>House-spiced, brewed slow with whole milk.</p>
-          </div>
-          <span class="dish-price">$4</span>
-        </div>
-        <div class="dish-row">
-          <div class="dish-row-info">
-            <h3>Fresh fruit cooler</h3>
-            <p>Seasonal fruit, mint, soda water.</p>
-          </div>
-          <span class="dish-price">$5</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="menu-section" id="sweets">
-    <div class="wrap">
-      <div class="menu-section-head">
-        <h2>Sweets</h2>
-        <span class="count">The reason we're named Food Fudge</span>
-      </div>
-      <div class="dish-list">
-        <div class="dish-row">
-          <div class="dish-row-info">
-            <h3>Fudge brownie <span class="badge badge-best">House favorite</span></h3>
-            <p>Dense, brown-butter, sea salt on top.</p>
-          </div>
-          <span class="dish-price">$7</span>
-        </div>
-        <div class="dish-row">
-          <div class="dish-row-info">
-            <h3>Salted caramel fudge slice</h3>
-            <p>Layered shortbread, caramel, dark chocolate ganache.</p>
-          </div>
-          <span class="dish-price">$8</span>
-        </div>
-        <div class="dish-row">
-          <div class="dish-row-info">
-            <h3>Affogato <span class="badge badge-veg">Veg</span></h3>
-            <p>House-made vanilla gelato, double espresso poured tableside.</p>
-          </div>
-          <span class="dish-price">$6</span>
-        </div>
-        <div class="dish-row">
-          <div class="dish-row-info">
-            <h3>Seasonal fruit crumble</h3>
-            <p>Warm, oat crumble, vanilla custard.</p>
-          </div>
-          <span class="dish-price">$8</span>
-        </div>
-      </div>
-
-      <div class="menu-note">
-        <div class="icon">🌾</div>
-        <div>
-          <h3>Allergies or dietary needs?</h3>
-          <p>Most dishes can be adapted — let your server know and we'll talk you through what works. Gluten-free bread available on request.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="menu-cta">
-    <div class="wrap">
-      <h2>Hungry already?</h2>
-      <p>Tables go fast on weekends — reserve ahead, or just walk in and we'll find you a seat.</p>
-      <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
-        <a href="contact.html#reserve" class="btn-primary">Reserve a table</a>
-        <a href="about.html" class="btn-secondary">Our story</a>
-      </div>
-    </div>
-  </section>
-</main>
-
-<footer>
-  <div class="wrap">
-    <div class="footer-top">
-      <div>
-        <a href="index.html" class="logo">Food <span style="color:var(--terracotta)">Fudge</span></a>
-        <p>A neighborhood kitchen for slow mornings and honest food. Open daily.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Explore</h4>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="menu.html">Menu</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Contact</h4>
-        <ul>
-          <li><a href="tel:+925112345678">051 1234 5678</a></li>
-          <li><a href="mailto:hello@foodfudge.example">hello@foodfudge.example</a></li>
-          <li><a href="contact.html">14 Mill Lane, Rawalpindi</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>© 2026 Food Fudge. All rights reserved.</span>
-      <span>Made with care, one loaf at a time.</span>
-    </div>
-  </div>
-</footer>
-
-<script>
-  const navToggle = document.getElementById('navToggle');
-  const navLinks = document.getElementById('navLinks');
-  navToggle.addEventListener('click', () => {
-    const isOpen = navLinks.classList.toggle('open');
-    navToggle.setAttribute('aria-expanded', isOpen);
-  });
-  navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      navLinks.classList.remove('open');
-      navToggle.setAttribute('aria-expanded', 'false');
-    });
-  });
-
-  // Category nav: scroll-to + active state
-  const catButtons = document.querySelectorAll('.cat-btn');
-  const sections = [...catButtons].map(btn => document.getElementById(btn.dataset.target));
-
-  catButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const target = document.getElementById(btn.dataset.target);
-      const offset = 150;
-      const top = target.getBoundingClientRect().top + window.scrollY - offset;
-      window.scrollTo({top, behavior:'smooth'});
-    });
-  });
-
-  const sectionObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting){
-        const id = entry.target.id;
-        catButtons.forEach(b => b.classList.toggle('active', b.dataset.target === id));
-      }
-    });
-  }, {rootMargin:'-160px 0px -60% 0px', threshold:0});
-
-  sections.forEach(s => s && sectionObserver.observe(s));
-</script>
-
-</body>
-</html>
+  }
+
+  /* ---------- Header ---------- */
+
+  header{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:rgba(255,248,239,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--tan);
+  }
+
+  .nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:18px 32px;
+    max-width:var(--max-w);
+    margin:0 auto;
+  }
+
+  .logo{
+    font-family:'Fraunces', serif;
+    font-size:1.5rem;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+
+  .logo span{
+    color:var(--terracotta);
+  }
+
+  .nav-links{
+    display:flex;
+    gap:36px;
+    list-style:none;
+    font-size:0.95rem;
+    font-weight:500;
+  }
+
+  .nav-links a{
+    position:relative;
+    padding:4px 0;
+    transition:color 0.2s ease;
+  }
+
+  .nav-links a:hover{
+    color:var(--terracotta);
+  }
+
+  .nav-links a.active{
+    color:var(--terracotta);
+  }
+
+  .nav-cta{
+    background:var(--ink);
+    color:var(--cream);
+    padding:11px 22px;
+    border-radius:99px;
+    font-size:0.9rem;
+    font-weight:600;
+    transition:background 0.2s ease, transform 0.2s ease;
+  }
+
+  .nav-cta:hover{
+    background:var(--terracotta);
+    transform:translateY(-1px);
+  }
+
+  .nav-toggle{
+    display:none;
+    background:none;
+    border:none;
+    cursor:pointer;
+    padding:8px;
+  }
+
+  .nav-toggle span{
+    display:block;
+    width:24px;
+    height:2px;
+    background:var(--ink);
+    margin:5px 0;
+    transition:0.25s;
+  }
+
+
+  /* ---------- Menu Hero ---------- */
+
+  .menu-hero{
+    padding:80px 0 60px;
+    text-align:center;
+  }
+
+  .menu-hero .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:var(--tan-soft);
+    color:var(--ink);
+    padding:7px 14px;
+    border-radius:99px;
+    font-size:0.82rem;
+    font-weight:600;
+    letter-spacing:0.02em;
+    margin-bottom:20px;
+  }
+
+  .menu-hero .eyebrow::before{
+    content:"";
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:var(--sage);
+  }
+
+  .menu-hero h1{
+    font-size:clamp(2.5rem,5vw,4rem);
+    margin-bottom:18px;
+    letter-spacing:-0.01em;
+  }
+
+  .menu-hero p{
+    color:#5a473c;
+    font-size:1.08rem;
+    max-width:60ch;
+    margin:0 auto;
+  }
+
+
+  /* ---------- Category Navigation ---------- */
+
+  .category-nav{
+    padding:0 0 55px;
+  }
+
+  .category-links{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    flex-wrap:wrap;
+    list-style:none;
+  }
+
+  .category-links a{
+    display:inline-block;
+    padding:10px 20px;
+    border:1.5px solid var(--ink);
+    border-radius:99px;
+    font-size:0.9rem;
+    font-weight
